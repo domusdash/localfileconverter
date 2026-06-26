@@ -91,6 +91,40 @@ window.addEventListener('click', (e) => {
   }
 });
 
+// Share functionality
+const shareBtn = document.getElementById('share-btn');
+if (shareBtn) {
+  shareBtn.addEventListener('click', async () => {
+    const shareData = {
+      title: 'Blueprint Converter - 100% Local File & Image Converter',
+      text: 'Convert PDF to JPG, HEIC to JPG, WebP, PNG, and images entirely in your browser. 100% private, secure, and offline.',
+      url: window.location.origin
+    };
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        if (err.name !== 'AbortError') console.error('Error sharing:', err);
+      }
+    } else {
+      // Fallback copy to clipboard
+      try {
+        await navigator.clipboard.writeText(shareData.url);
+        const shareTextSpan = shareBtn.querySelector('span');
+        const originalText = shareTextSpan.textContent;
+        shareTextSpan.textContent = 'Link Copied!';
+        shareBtn.style.borderColor = '#10b981'; // Green success border
+        setTimeout(() => {
+          shareTextSpan.textContent = originalText;
+          shareBtn.style.borderColor = '';
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy link:', err);
+      }
+    }
+  });
+}
+
 // File selection handler
 function handleFileSelect(e) {
   const files = e.target.files;
