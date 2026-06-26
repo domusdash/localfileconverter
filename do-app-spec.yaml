@@ -1,0 +1,19 @@
+name: localfileconverter
+region: nyc
+domains:
+- domain: localfileconverter.app
+  type: PRIMARY
+ingress:
+  rules:
+  - component:
+      name: localfileconverter
+    match:
+      path:
+        prefix: /
+static_sites:
+- github:
+    branch: main
+    deploy_on_push: true
+    repo: domusdash/localfileconverter
+  name: localfileconverter
+  output_dir: .

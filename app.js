@@ -83,6 +83,14 @@ clearQueueBtn.addEventListener('click', clearQueue);
 convertAllBtn.addEventListener('click', convertAllFiles);
 downloadZipBtn.addEventListener('click', downloadAllAsZip);
 
+// Close tools dropdown on click outside
+window.addEventListener('click', (e) => {
+  const dropdown = document.querySelector('.tools-dropdown');
+  if (dropdown && dropdown.hasAttribute('open') && !dropdown.contains(e.target)) {
+    dropdown.removeAttribute('open');
+  }
+});
+
 // File selection handler
 function handleFileSelect(e) {
   const files = e.target.files;

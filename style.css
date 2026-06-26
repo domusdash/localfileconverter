@@ -1121,3 +1121,141 @@ body {
     grid-column: span 2;
   }
 }
+
+/* Tools Dropdown Menu */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tools-dropdown {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-sans);
+}
+
+.tools-dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--blueprint-cyan);
+  background: rgba(0, 17, 51, 0.6);
+  color: var(--blueprint-cyan);
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  transition: var(--transition-smooth);
+  user-select: none;
+}
+
+/* Remove default details marker */
+.tools-dropdown-btn::-webkit-details-marker {
+  display: none;
+}
+.tools-dropdown-btn::marker {
+  display: none;
+}
+
+.tools-dropdown-btn:hover {
+  background: var(--blueprint-cyan-glow);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.tools-dropdown-btn .chevron-icon {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+
+.tools-dropdown[open] .tools-dropdown-btn .chevron-icon {
+  transform: rotate(180deg);
+}
+
+.tools-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 320px;
+  background: #001133;
+  border: 1px solid var(--blueprint-cyan);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 240, 255, 0.1);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  z-index: 100;
+}
+
+.tools-dropdown-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  text-decoration: none;
+  color: #fff;
+  transition: var(--transition-smooth);
+  border: 1px solid transparent;
+}
+
+.tools-dropdown-item:hover {
+  background: rgba(0, 240, 255, 0.05);
+  border-color: rgba(0, 240, 255, 0.2);
+}
+
+.tools-dropdown-item.active {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: var(--blueprint-cyan);
+}
+
+.tools-dropdown-item svg, .tools-dropdown-item i {
+  width: 18px;
+  height: 18px;
+  color: var(--blueprint-cyan);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tools-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: left;
+}
+
+.tools-item-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.tools-item-desc {
+  font-size: 0.7rem;
+  color: var(--blueprint-cyan-glow);
+  line-height: 1.3;
+}
+
+/* Mobile responsive styling for dropdown */
+@media (max-width: 600px) {
+  .header-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  .tools-dropdown {
+    width: 100%;
+  }
+  .tools-dropdown-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .tools-dropdown-menu {
+    width: 100%;
+    position: static;
+    margin-top: 4px;
+    box-sizing: border-box;
+  }
+}
