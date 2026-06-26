@@ -846,6 +846,17 @@ body {
   color: var(--blueprint-muted);
 }
 
+.support-email {
+  color: var(--blueprint-cyan);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--blueprint-cyan);
+  transition: var(--transition-smooth);
+}
+.support-email:hover {
+  color: #fff;
+  border-bottom-style: solid;
+}
+
 .footer-links {
   display: flex;
   align-items: center;
