@@ -1,7 +1,7 @@
 name: blueprintconverter
 region: nyc
 domains:
-- domain: localfileconverter.app
+- domain: blueprintconverter.com
   type: PRIMARY
 ingress:
   rules:
