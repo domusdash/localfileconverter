@@ -1,0 +1,7 @@
+# Blueprint Converter
+
+A local-first, browser-based utility for converting high-fidelity image formats (HEIC) and documents (PDF) entirely client-side. No files are uploaded to any server, ensuring absolute privacy.
+
+## Features
+- [File Converter](https://blueprintconverter.com/): Convert PDF files to JPG images, HEIC images to JPG, WebP to JPG, and PNG to WebP safely and offline.
+- [Privacy Policy](https://blueprintconverter.com/privacy.html): Detailing local WebAssembly file-processing architecture and cookie policies.
