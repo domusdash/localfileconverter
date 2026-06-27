@@ -322,6 +322,25 @@
     </section>
   </main>
 
+  <!-- Newsletter Section -->
+  <section class="newsletter-section">
+    <div class="newsletter-container">
+      <h3>Subscribe to Updates</h3>
+      <p>Stay informed about new conversion formats, performance updates, and offline tool releases.</p>
+      <form id="newsletter-form" class="newsletter-form">
+        <!-- Honeypot -->
+        <div style="display: none;" aria-hidden="true">
+          <input type="text" name="website" id="newsletter-website" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="newsletter-input-group">
+          <input type="email" id="newsletter-email" placeholder="Enter your email address" required autocomplete="email">
+          <button type="submit" id="newsletter-submit">Subscribe</button>
+        </div>
+      </form>
+      <div id="newsletter-message" class="newsletter-message"></div>
+    </div>
+  </section>
+
   <footer class="app-footer">
     <div class="footer-container">
       <p>&copy; 2026 Blueprint Converter. Running locally and securely on your system. Have questions? Email us at <a href="mailto:support@blueprintconverter.com" class="support-email">support@blueprintconverter.com</a></p>

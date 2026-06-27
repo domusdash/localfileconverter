@@ -1083,3 +1083,74 @@ function processMergedPdf(items) {
     }
   });
 }
+
+// Newsletter Signup Handler
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('newsletter-form');
+  const emailInput = document.getElementById('newsletter-email');
+  const websiteInput = document.getElementById('newsletter-website');
+  const submitBtn = document.getElementById('newsletter-submit');
+  const messageDiv = document.getElementById('newsletter-message');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const email = emailInput.value.trim();
+    const website = websiteInput.value.trim();
+    
+    // Clear message and disable form
+    messageDiv.textContent = '';
+    messageDiv.className = 'newsletter-message';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Subscribing...';
+
+    // Honeypot check
+    if (website) {
+      // Pretend it succeeded
+      setTimeout(() => {
+        messageDiv.textContent = 'Thanks for subscribing! Please check your inbox.';
+        messageDiv.className = 'newsletter-message success';
+        emailInput.value = '';
+        websiteInput.value = '';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Subscribe';
+      }, 1000);
+      return;
+    }
+
+    try {
+      const response = await fetch('https://marketing.dailyflowlabs.com/api/marketing/public/newsletter-signup/blueprint-converter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          source: 'landing-page',
+          website: website
+        })
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        messageDiv.textContent = 'Thanks for subscribing! Please check your inbox.';
+        messageDiv.className = 'newsletter-message success';
+        emailInput.value = '';
+      } else {
+        messageDiv.textContent = data.error || 'Something went wrong. Please try again.';
+        messageDiv.className = 'newsletter-message error';
+      }
+    } catch (err) {
+      console.error(err);
+      messageDiv.textContent = 'Failed to connect. Please check your network connection.';
+      messageDiv.className = 'newsletter-message error';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Subscribe';
+    }
+  });
+});
+
